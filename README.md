@@ -8,6 +8,7 @@ Fast track services communications via the RabbitMQ Message Broker.
 
 * [Setup](#setup)
 * [Build](#build)
+* [Test](#test)
 * [Publish](#publish)
 * [Contributing](#contributing)
 * [License](#license)
@@ -24,6 +25,39 @@ nvm use
 
 ```sh
 npm run build
+```
+
+## Test
+
+Start `rabbitmq` on your local machine:
+
+```sh
+docker run --rm -it --hostname rabbitmq-amqp-message-bus -p 15672:15672 -p 5672:5672 rabbitmq:3-management
+```
+
+Then exeucte the tests:
+
+```sh
+npm run test
+```
+
+Expected output:
+
+```
+  IntegrationCommands
+    when subscribing and publishing
+      ✔ then the message is received (55ms)
+
+  IntegrationEvents
+    2 queues with different names against the same exchange
+      when subscribing and publishing
+        ✔ then the message is consumed twice by both queues (2056ms)
+    2 queues with identical names against the same exchange
+      when subscribing and publishing
+        ✔ then the message is consumed only once by one of the queues (2047ms)
+
+
+  3 passing (4s)
 ```
 
 ## Publish
