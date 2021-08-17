@@ -2,7 +2,13 @@
 
 Fast track services communications via the RabbitMQ Message Broker.
 
-![Downloads](https://img.shields.io/github/downloads/0v3rst33r/amqp-message-bus/total) ![Contributors](https://img.shields.io/github/contributors/0v3rst33r/amqp-message-bus?color=dark-green) ![Issues](https://img.shields.io/github/issues/0v3rst33r/amqp-message-bus) ![License](https://img.shields.io/github/license/0v3rst33r/amqp-message-bus)
+[![0v3rst33r - amqp-message-bus](https://img.shields.io/static/v1?label=0v3rst33r&message=amqp-message-bus&color=blue&logo=github)](https://github.com/0v3rst33r/amqp-message-bus)
+[![stars - amqp-message-bus](https://img.shields.io/github/stars/0v3rst33r/amqp-message-bus?style=social)](https://github.com/0v3rst33r/amqp-message-bus)
+[![forks - amqp-message-bus](https://img.shields.io/github/forks/0v3rst33r/amqp-message-bus?style=social)](https://github.com/0v3rst33r/amqp-message-bus)
+
+[![GitHub tag](https://img.shields.io/github/tag/0v3rst33r/amqp-message-bus?include_prereleases=&sort=semver)](https://github.com/0v3rst33r/amqp-message-bus/releases/) ![Contributors](https://img.shields.io/github/contributors/0v3rst33r/amqp-message-bus?color=dark-green) ![Issues](https://img.shields.io/github/issues/0v3rst33r/amqp-message-bus) ![License](https://img.shields.io/github/license/0v3rst33r/amqp-message-bus)
+
+
 
 ## Table Of Contents
 
