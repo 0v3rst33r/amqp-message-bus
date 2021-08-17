@@ -1,0 +1,54 @@
+{
+  "name": "@inrange/amqp-message-bus",
+  "version": "0.1.0",
+  "description": "Message bus based on amqplib",
+  "main": "dist/index.js",
+  "scripts": {
+    "clean:build": "rimraf dist",
+    "pre:build": "npm i && npm run clean:build",
+    "compile": "tsc -p ./",
+    "build": "npm run pre:build && npm run compile && npm run lint",
+    "lint": "cd src && eslint -c .eslintrc.js --ext .ts ./",
+    "test": "npm run test:lint && nyc mocha",
+    "test:lint": "cd test && eslint -c .eslintrc.js --ext .ts ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0v3rst33r/amqp-message-bus.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/0v3rst33r/amqp-message-bus/issues"
+  },
+  "homepage": "https://github.com/0v3rst33r/amqp-message-bus#readme",
+  "devDependencies": {
+    "@types/amqplib": "0.8.1",
+    "@types/chai": "4.2.21",
+    "@types/mocha": "9.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "chai": "4.3.4",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-etc": "^1.5.4",
+    "eslint-plugin-import": "^2.24.0",
+    "eslint-plugin-jsdoc": "^36.0.7",
+    "eslint-plugin-no-null": "^1.0.2",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-sonarjs": "^0.10.0",
+    "eslint-plugin-unicorn": "^35.0.0",
+    "mocha": "9.0.3",
+    "nyc": "15.1.0",
+    "prettier": "2.3.2",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "3.0.2",
+    "ts-node": "10.2.0",
+    "typescript": "4.3.5"
+  },
+  "dependencies": {
+    "amqplib": "0.8.0",
+    "log4js": "6.3.0",
+    "rxjs": "7.3.0"
+  }
+}

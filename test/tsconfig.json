@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "target": "es2017",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "removeComments": true,
+        "sourceMap": true,
+        "outDir": "../dist-test",
+        "allowJs": true,
+        "lib": [
+            "dom",
+            "es2017"
+        ],
+        "types": [
+            "node",
+            "debug",
+            "cassandra-driver",
+            "three"
+        ]
+    },
+    "include": [
+        "**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
