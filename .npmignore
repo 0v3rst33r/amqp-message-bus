@@ -6,3 +6,7 @@ tslint.json
 .nvmrc
 .prettierignore
 .prettierrc
+.nyc_output
+changelog*
+*yaml
+*yml

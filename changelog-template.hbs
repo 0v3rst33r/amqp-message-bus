@@ -1,0 +1,79 @@
+{{#each releases}}
+    # {{title}} ({{isoDate}})
+
+    {{! lit commits with feature: in message, use feature: or Feature: }}
+    {{#commit-list
+        commits
+        heading='### Features'
+        message='feat\(|Feat\('
+        exclude='(fix: )|(Fix: )|(break: )|(Break: )'}}
+        * {{subject}} ({{author}}) ([`{{shorthash}}`]({{href}}))
+    {{/commit-list}}
+
+    {{#commit-list
+        commits
+        heading='### Tests'
+        message='test\(|tests\('
+        exclude='(fix: )|(Fix: )|(break: )|(Break: )'}}
+        * {{subject}} ({{author}}) ([`{{shorthash}}`]({{href}}))
+    {{/commit-list}}
+
+    {{! use fix: or Fix: }}
+    {{#commit-list
+        commits
+        heading='### Fixes'
+        message='fix\(|Fix\('
+        exclude='(break: )|(Break: )|(Feature: )|(feature: )'}}
+        * {{subject}} ({{author}}) ([`{{shorthash}}`]({{href}}))
+    {{/commit-list}}
+
+    {{! user break: or Break: }}
+    {{#commit-list
+        commits
+        heading='### BREAKING CHANGES'
+        message='break\(|Break\('
+        exclude='(fix: )|(Fix: )|(Feature: )|(feature: )'}}
+        * {{subject}} ({{author}}) ([`{{shorthash}}`]({{href}}))
+    {{/commit-list}}
+
+    {{#commit-list
+        commits
+        heading='### Refactor'
+        message='refactor\(|Refactor\('
+        exclude='(fix: )|(Fix: )|(Feature: )|(feature: )'}}
+        * {{subject}} ({{author}}) ([`{{shorthash}}`]({{href}}))
+    {{/commit-list}}
+
+    {{#commit-list
+        commits
+        heading='### Documentation'
+        message='docs\(|Docs\('
+        exclude='(fix: )|(Fix: )|(Feature: )|(feature: )'}}
+        * {{subject}} ({{author}}) ([`{{shorthash}}`]({{href}}))
+    {{/commit-list}}
+
+    {{#commit-list
+        commits
+        heading='### Configuration'
+        message='config\(|Config\('
+        exclude='(fix: )|(Fix: )|(Feature: )|(feature: )'}}
+        * {{subject}} ({{author}}) ([`{{shorthash}}`]({{href}}))
+    {{/commit-list}}
+
+    {{#commit-list
+            commits
+            heading='### Chore'
+            message='chore\(|Chore\('
+            exclude='(fix: )|(Fix: )|(Feature: )|(feature: )'}}
+        * {{subject}} ({{author}}) ([`{{shorthash}}`]({{href}}))
+    {{/commit-list}}
+
+    {{#commit-list
+        commits
+        heading='### Misc (pre semantic commit messages)'
+        message='.*'
+        exclude='feat\(|Feat\(|chore\(|Chore\(|test\(|tests\(|fix\(|Fix\(|break\(|Break\(|refactor\(|Refactor\(|docs\(|Docs\(|config\(|Config\(|Merge tag'}}
+        * {{subject}} ({{author}}) ([`{{shorthash}}`]({{href}}))
+    {{/commit-list}}
+
+{{/each}}
