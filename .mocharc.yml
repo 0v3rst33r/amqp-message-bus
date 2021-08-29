@@ -1,0 +1,7 @@
+exit: true
+require: ts-node/register
+spec:
+    - src/**/*spec.ts
+    - test/**/*spec.ts
+timeout: 5000
+ui: bdd
