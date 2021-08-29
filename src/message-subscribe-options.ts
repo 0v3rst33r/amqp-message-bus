@@ -1,9 +1,9 @@
 import { MessageDecoding } from './message-decoding';
-import * as amqp from 'amqplib/callback_api';
+import { Channel } from 'amqplib/callback_api';
 
 export interface MessageSubscribeOptions {
     decoding?: MessageDecoding;
-    listenChannel?: amqp.Channel;
+    listenChannel?: Channel;
     exchangeName?: string;
     exchangeType?: string;
     exchangeDurable?: boolean;

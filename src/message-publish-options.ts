@@ -1,9 +1,9 @@
 import { MessageEncoding } from './message-encoding';
-import * as amqp from 'amqplib/callback_api';
+import { Channel } from 'amqplib/callback_api';
 
 export interface MessagePublishOptions {
     encoding?: MessageEncoding;
-    sendChannel?: amqp.Channel;
+    sendChannel?: Channel;
     exchangeName?: string;
     exchangeType?: string;
     exchangeDurable?: boolean;
