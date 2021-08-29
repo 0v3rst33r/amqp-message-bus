@@ -1,0 +1,12 @@
+src
+test
+tsconfig.json
+tslint.json
+.idea
+.nvmrc
+.prettierignore
+.prettierrc
+.nyc_output
+changelog*
+*yaml
+*yml
