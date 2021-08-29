@@ -1,6 +1,6 @@
 {
   "name": "@inrange/amqp-message-bus",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Message bus based on amqplib",
   "main": "dist/index.js",
   "scripts": {
