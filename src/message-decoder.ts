@@ -1,3 +1,5 @@
+import { Message } from 'amqplib';
+
 export interface MessageDecoder {
-    decode<T>(message: any): T;
+    decode<T>(message: Message): T;
 }

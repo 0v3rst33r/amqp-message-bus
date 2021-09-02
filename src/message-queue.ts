@@ -1,21 +1,20 @@
-import * as amqp from 'amqplib/callback_api';
-
 import { MessagePublishOptions } from './message-publish-options';
 import { MessageSubscribeOptions } from './message-subscribe-options';
 import { Observable, Observer } from 'rxjs';
-import * as amqpProperties from 'amqplib/properties';
+import { Message } from 'amqplib';
 import { logUtil } from './util/log-util';
+import { Channel } from 'amqplib/callback_api';
 
 const logger = logUtil.getLogger('MessageQueue');
 
 export interface EventQueueSubscribeResult {
-    message: amqpProperties.Message;
+    message: Message;
     ackFn?: () => void;
 }
 
 export class MessageQueue {
-    private readonly sendChannel: amqp.Channel;
-    private readonly listenChannel: amqp.Channel;
+    private readonly sendChannel: Channel;
+    private readonly listenChannel: Channel;
 
     constructor(options: MessagePublishOptions | MessageSubscribeOptions) {
         if (isMessagePublishOptions(options)) {
@@ -88,7 +87,7 @@ export class MessageQueue {
             `subscribe - init [ exchangeName : ${exchangeName}, exchangeType : ${exchangeType}, exchangeDurable : ${exchangeDurable}, queueName : ${queueName}, queueDurable : ${queueDurable}, routingKey : ${routingKey}, noAck : ${noAck} ]`
         );
 
-        return new Observable((observer: Observer<{ message: amqpProperties.Message; ackFn?: () => void }>) => {
+        return new Observable((observer: Observer<{ message: Message; ackFn?: () => void }>) => {
             this.listenChannel.assertExchange(exchangeName, exchangeType, { durable: exchangeDurable });
 
             this.listenChannel.assertQueue(queueName, { durable: queueDurable }, (error, q) => {
@@ -103,7 +102,7 @@ export class MessageQueue {
 
                 this.listenChannel.consume(
                     q.queue,
-                    (message: amqpProperties.Message | null) => {
+                    (message: Message | null) => {
                         logger.info('message received');
                         if (message !== null && message !== undefined) {
                             observer.next(noAck ? { message } : { message, ackFn: () => this.listenChannel.ack(message) });

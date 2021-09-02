@@ -1,9 +1,8 @@
-import * as amqp from 'amqplib/callback_api';
-
 import * as messageBus from './index';
 import { catchError, map } from 'rxjs/operators';
 import { Subject, of } from 'rxjs';
 import { logUtil } from './util/log-util';
+import { Channel, connect, Connection } from 'amqplib/callback_api';
 
 const logger = logUtil.getLogger('AmqpMessageBus');
 
@@ -25,10 +24,10 @@ export class AmqpMessageBus implements messageBus.MessageBus {
 
     private decoders: messageBus.MessageDecoders = new messageBus.MessageDecoders();
 
-    private connection: amqp.Connection;
-    private sendChannel: amqp.Channel;
-    private listenChannel: amqp.Channel;
-    private channels: Array<amqp.Channel> = [];
+    private connection: Connection;
+    private sendChannel: Channel;
+    private listenChannel: Channel;
+    private channels: Array<Channel> = [];
     private eventQueues: Map<string, messageBus.MessageQueue> = new Map<string, messageBus.MessageQueue>();
     private commandQueues: Map<string, messageBus.MessageQueue> = new Map<string, messageBus.MessageQueue>();
     private initialised: boolean = false;
@@ -74,9 +73,9 @@ export class AmqpMessageBus implements messageBus.MessageBus {
         logger.info(`[AMQP] AutoConnect enabled`);
 
         // eslint-disable-next-line max-lines-per-function
-        amqp.connect(
+        connect(
             this.host,
-            function (err, conn: amqp.Connection) {
+            function (err, conn: Connection) {
                 if (err || conn === undefined) {
                     logger.warn(`[AMQP] Could not connect to host ${this.host}, do a reconnect`);
                     if (autoReconnect) {
@@ -109,13 +108,13 @@ export class AmqpMessageBus implements messageBus.MessageBus {
                     }.bind(this)
                 );
 
-                conn.createChannel((_err1, channel: amqp.Channel) => {
+                conn.createChannel((_err1, channel: Channel) => {
                     this.sendChannel = channel;
                     this.channels.push(channel);
                     this.done();
                 });
 
-                conn.createChannel((_err1, channel: amqp.Channel) => {
+                conn.createChannel((_err1, channel: Channel) => {
                     this.listenChannel = channel;
                     this.channels.push(channel);
                     this.done();
